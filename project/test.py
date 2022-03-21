@@ -1,3 +1,4 @@
+from this import d
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from datetime import timedelta 
 from flask_sqlalchemy import SQLAlchemy
@@ -11,16 +12,23 @@ app.permanent_session_lifetime = timedelta(hours=2)
 db = SQLAlchemy(app)
 
 class users(db.Model):
-    _id = db.Column("id", db.Integer, primary_key=True)
-    name = db.Column("name", db.String(100))
-    email = db.Column("email", db.String(100)
-    def __init__(self, name, email):
+    __tablename__ = 'users'
+    id = db.Column("id", db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    email = db.Column(db.String(100), unique=True)
+
+    def __init__(self, name=None, email=None):
         self.name = name
         self.email = email
 
 @app.route("/")
+@app.route("/home")
 def home():
     return render_template("index.html", content="Testing")
+
+@app.route("/view")
+def view():
+    return render_template("view.html", values = users.query.all())
 
 @app.route("/test")
 def test():

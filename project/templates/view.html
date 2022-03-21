@@ -1,0 +1,10 @@
+{% extends "base.html" %} 
+{% block title %}User DB{% endblock %} 
+{% block content %} 
+<h3> Name, Email </h3>
+    {% for item in values %} 
+            <table>
+                <col>  {{item.name}}, {{item.email}}
+            </table>
+    {% endfor %}
+{% endblock %}
