@@ -2,7 +2,7 @@ from this import d
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from datetime import timedelta 
 from flask_sqlalchemy import SQLAlchemy
-from main_2 import second
+from admin.main_2 import second
 
 app = Flask(__name__)
 app.secret_key = "hello"
